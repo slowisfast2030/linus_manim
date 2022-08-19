@@ -1,0 +1,161 @@
+'''
+如果想知道当前可用的所有配置，执行一下的命令
+python -m manim render --help
+
+Global options:
+  -c, --config_file TEXT         Specify the configuration file to use for
+                                 render settings.
+  --custom_folders               Use the folders defined in the [custom_folders]
+                                 section of the config file to define the output
+                                 folder structure.
+  --disable_caching              Disable the use of the cache (still generates
+                                 cache files).
+  --flush_cache                  Remove cached partial movie files.
+  --tex_template TEXT            Specify a custom TeX template file.
+  -v, --verbosity [DEBUG|INFO|WARNING|ERROR|CRITICAL]
+                                 Verbosity of CLI output. Changes ffmpeg log
+                                 level unless 5+.
+  --notify_outdated_version / --silent
+                                 Display warnings for outdated installation.
+  --enable_gui                   Enable GUI interaction.
+  --gui_location TEXT            Starting location for the GUI.
+  --fullscreen                   Expand the window to its maximum possible size.
+  --enable_wireframe             Enable wireframe debugging mode in opengl.
+  --force_window                 Force window to open when using the opengl
+                                 renderer, intended for debugging as it may
+                                 impact performance
+  --dry_run                      Renders animations without outputting image or
+                                 video files and disables the window
+
+Output options:
+  -o, --output_file TEXT         Specify the filename(s) of the rendered
+                                 scene(s).
+  -0, --zero_pad INTEGER RANGE   Zero padding for PNG file names.  [0<=x<=9]
+  --write_to_movie               Write the video rendered with opengl to a file.
+  --media_dir PATH               Path to store rendered videos and latex.
+  --log_dir PATH                 Path to store render logs.
+  --log_to_file                  Log terminal output to file.
+
+Render Options:
+  -n, --from_animation_number TEXT
+                                 Start rendering from n_0 until n_1. If n_1 is
+                                 left unspecified, renders all scenes after n_0.
+  -a, --write_all                Render all scenes in the input file.
+  --format [png|gif|mp4|webm|mov]
+  -s, --save_last_frame
+  -q, --quality [l|m|h|p|k]      Render quality at the follow resolution
+                                 framerates, respectively: 854x480 15FPS,
+                                 1280x720 30FPS, 1920x1080 60FPS, 2560x1440
+                                 60FPS, 3840x2160 60FPS
+  -r, --resolution TEXT          Resolution in (W,H) for when 16:9 aspect ratio
+                                 isn't possible.
+  --fps, --frame_rate FLOAT      Render at this frame rate.
+  --renderer [cairo|opengl]      Select a renderer for your Scene.
+  --use_opengl_renderer          Render scenes using OpenGL (Deprecated).
+  -g, --save_pngs                Save each frame as png (Deprecated).
+  -i, --save_as_gif              Save as a gif (Deprecated).
+  --save_sections                Save section videos in addition to movie file.
+  -s, --save_last_frame          Save last frame as png (Deprecated).
+  -t, --transparent              Render scenes with alpha channel.
+  --use_projection_fill_shaders  Use shaders for OpenGLVMobject fill which are
+                                 compatible with transformation matrices.
+  --use_projection_stroke_shaders
+                                 Use shaders for OpenGLVMobject stroke which are
+                                 compatible with transformation matrices.
+
+Ease of access options:
+  --progress_bar [display|leave|none]
+                                 Display progress bars and/or keep them
+                                 displayed.
+  -p, --preview                  Preview the Scene's animation. OpenGL does a
+                                 live preview in a popup window. Cairo opens the
+                                 rendered video file in the system default media
+                                 player.
+  -f, --show_in_file_browser     Show the output file in the file browser.
+  --jupyter                      Using jupyter notebook magic.
+
+Other options:
+  --help                         Show this message and exit.
+'''
+#linus 上面这些命令最终都是影响config字典。下面都是config字典所包含的内容。
+#linus 可以发现，有很多config属性是命令行参数无法改变的。所以可以直接设置config字典参数。
+# 存储图片、声音等文件
+#linus 下面的配置是在程序中通过循环打印config字典显示的
+#linus 也可以通过manim cfg show显示配置，但没有打印config字典全面
+assets_dir :  ./
+background_color :  black
+background_opacity :  1.0
+# unknow
+custom_folders :  False
+disable_caching :  False
+disable_caching_warning :  False
+dry_run :  False
+enable_gui :  False
+enable_wireframe :  False
+ffmpeg_executable :  ffmpeg
+ffmpeg_loglevel :  ERROR
+flush_cache :  False
+force_window :  False
+format :  None
+# 应该是生成的视频的宽和高
+frame_height :  8.0
+frame_rate :  15
+frame_width :  14.222222222222221
+frame_x_radius :  7.111111111111111
+frame_y_radius :  4.0
+from_animation_number :  0
+# 改为true后并不能全屏
+fullscreen :  False
+gui_location :  (0, 0)
+images_dir :  {media_dir}/images/{module_name}
+input_file :  /Users/linus/Desktop/linus_manim/PageRank/markov_chain.py
+log_dir :  {media_dir}/logs
+log_to_file :  False
+max_files_cached :  100
+# 生成的视频图片的存储路径
+media_dir :  ../../linus_manim_media
+media_embed :  None
+# 啥意思
+media_width :  60%
+movie_file_extension :  .mp4
+notify_outdated_version :  True
+output_file :  None
+partial_movie_dir :  {video_dir}/partial_movie_files/{scene_name}
+# 这个是视频大小吗
+pixel_height :  480
+pixel_width :  854
+plugins :  []
+# 渲染后显示
+preview :  True
+# 进度条
+progress_bar :  display
+# 参数设置-ql. 'l', 'm', 'h', 'p', 'k'.
+quality :  low_quality
+# 渲染引擎。和opengl有什么区别吗？
+renderer :  cairo
+# --save_as_gif is deprecated, please use --format=gif instead!
+save_as_gif :  False
+# output the last frame of the scene instead of the whole video
+save_last_frame :  False
+save_pngs :  False
+save_sections :  False
+# 场景名字
+scene_names :  ('Patreons',)
+sections_dir :  {video_dir}/sections
+show_in_file_browser :  False
+tex_dir :  {media_dir}/Tex
+tex_template_file :  None
+text_dir :  {media_dir}/texts
+upto_animation_number :  inf
+use_opengl_renderer :  False
+use_projection_fill_shaders :  False
+use_projection_stroke_shaders :  False
+# 日志等级
+verbosity :  INFO
+video_dir :  {media_dir}/videos/{module_name}/{quality}
+window_monitor :  0
+window_position :  UR
+window_size :  default
+write_all :  False
+write_to_movie :  True
+zero_pad :  4
