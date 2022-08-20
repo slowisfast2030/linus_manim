@@ -4,4 +4,4 @@ echo scene: $1
 # 新建了虚拟环境manim 
 # conda activate manim
 # python -m manim render markov_chain.py $1 -c manim.cfg
-python -m manim render linus_test.py $1 -c manim.cfg
+python -m manim render linus_markov.py $1 -c manim.cfg
