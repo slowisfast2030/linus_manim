@@ -77,6 +77,7 @@ class MarkovChain:
         #linus 嵌套列表，只不过内层是tuple
         self.edges = edges
         #linus 马尔科夫链可以认为是图，图的一种表示方法就是邻接表
+        #linus 由edges就可以生成adj_list
         self.adj_list = {}
         for state in self.states:
             self.adj_list[state] = []
