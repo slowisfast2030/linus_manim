@@ -666,12 +666,16 @@ class MarkovChainTester(Scene):
         )
         #linus [0, 1, 2, 3]
         print(markov_chain.get_states())
+
         #linus [(0, 1), (1, 0), (0, 2), (1, 2), (1, 3), (2, 3), (3, 1)]
         print(markov_chain.get_edges())
+
         #linus [0.25 0.25 0.25 0.25]
         print(markov_chain.get_current_dist())
+
         #linus {0: [1, 2], 1: [0, 2, 3], 2: [3], 3: [1]}
         print(markov_chain.get_adjacency_list())
+        
         '''
         [[0.         0.5        0.5        0.        ]
         [0.33333333 0.         0.33333333 0.33333333]
