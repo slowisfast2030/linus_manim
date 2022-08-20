@@ -235,7 +235,7 @@ class CustomCurvedArrow(CurvedArrow):
         self.tip.z_index = -100
 
     def set_opacity(self, opacity, family=True):
-        #linus 通过父类的函数赋值，没想到
+        #linus 通过父类的函数赋值，没想到。深度思考，常问本质！
         return super().set_opacity(opacity, family)
 
     #linus 高端操作
