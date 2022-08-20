@@ -135,7 +135,7 @@ class MarkovChain:
     def get_current_dist(self):
         return self.dist
 
-    #linus 
+    #linus 原来这里的self.dist变量跟踪的是不同时间点的状态分布。属于一个动态概念。
     def update_dist(self):
         """
         Performs one step of the markov chain
