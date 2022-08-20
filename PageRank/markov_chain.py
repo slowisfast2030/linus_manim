@@ -142,6 +142,18 @@ class MarkovChain:
         """
         self.dist = np.dot(self.dist, self.transition_matrix)
 
+    #linus 难道这是求得稳态的计算方法吗？
+    '''
+    np.transpose: 计算转移矩阵的转置
+    np.linalg.eig: 计算特征值和特征向量
+    取第一个特征向量
+
+    稳态的计算确实只与转移矩阵有关，和初始分布无关
+    '''
+    '''
+    详细的数学解释：https://blog.csdn.net/weixin_42428226/article/details/117713725
+    结论：通过特征向量求解稳态不是特别靠谱的方法。
+    '''
     def get_true_stationary_dist(self):
         dist = np.linalg.eig(np.transpose(self.transition_matrix))[1][:, 0]
         return dist / sum(dist)
@@ -168,41 +180,39 @@ class CustomLabel(Text):
         当子类做初始化（子类中包含新的属性）的时候，子类不会自动继承父类的属性；
         当子类做初始化（子类中包含新的属性）的时候，如果子类调用super初始化了父类的构造函数，那么子类会继承父类的属性。
         class father:
-            def __init__(self, father_attribute="father"):
-                self.father_attribute=father_attribute
+        def __init__(self, father_attribute = "father"):
+            self.father_attribute = father_attribute
 
         class child_without_ini(father):
             pass
 
         class child_with_ini(father):
             def __init__(self, child_attribute):
-                self.child_attribute=child_attribute
+                self.child_attribute = child_attribute
 
         class child_with_super(father):
-            def __init__(self,father_attribute,super_attribute):
-                self.super_attribute=super_attribute
+            def __init__(self,father_attribute, child_attribute):
+                self.child_attribute = child_attribute
                 super().__init__(father_attribute)
 
-        test_class_without_ini=child_without_ini()
-        test_class_with_ini=child_with_ini('child')
-        test_class_with_super=child_with_super('new_father','super')
+        test_class_without_ini = child_without_ini()
+        test_class_with_ini = child_with_ini('child')
+        test_class_with_super = child_with_super('child_father', 'child')
 
 
-        测试：
         #linus 自动继承父类所有的属性
-        print(test_class_without_ini.father_attribute)
-        输出：
-        father
-
-        #linus 父类的初始化函数被覆盖
-        print(test_class_with_ini.father_attribute)
-        输出：
-        AttributeError: 'child_with_ini' object has no attribute 'father_attribute'
+        print("test_class_without_ini:")
+        print(test_class_without_ini.father_attribute, "\n")
 
         #linus 不仅仅有父类属性，还有子类的属性
+        print("test_class_with_super:")
         print(test_class_with_super.father_attribute)
-        输出：
-        new_father
+        print(test_class_with_super.child_attribute, "\n")
+
+        #linus 父类的初始化函数被覆盖
+        print("test_class_with_ini:")
+        print(test_class_with_ini.child_attribute)
+        print(test_class_with_ini.father_attribute)
         """
         #linus 一般而言，子类的属性会比父类多一些
         #linus super().__init__()会很方便在父类属性基础上新增属性
