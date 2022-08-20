@@ -85,12 +85,14 @@ class MarkovChain:
             for u, v in edges:
                 if u == state:
                     self.adj_list[state].append(v)
+        
         #linus 转移矩阵
         if transition_matrix is not None:
             self.transition_matrix = transition_matrix
         else:
             # Assume default transition matrix is uniform across all outgoing edges
             #linus 为同一个节点的所有出边设置均匀分布
+            #linus 转移矩阵是一个二维数据。在我的固有观念中，还是习惯于嵌套列表，却没有深刻吸收numpy在并行处理上的巨大优势。
             self.transition_matrix = np.zeros((states, states))
             for state in self.states:
                 neighbors = self.adj_list[state]
@@ -112,6 +114,7 @@ class MarkovChain:
             )
 
         #linus 节点的初始分布
+        #linus self.starting_dist和self.dist两个变量是不是有点重复？
         self.starting_dist = self.dist
 
     def get_states(self):
