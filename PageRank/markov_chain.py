@@ -58,6 +58,8 @@ if __name__ == "__main__":
 # 这个性质如何和现实生活产生联系呢？
 # 假设一个人有2个状态，学习和玩乐。假设状态转移满足马尔可夫性，且这两个状态的转移矩阵是已知的。那么n天后是学习还是玩乐的概率分布就是稳定的了。
 # 这真是一个将其牛逼的例子啊！
+
+#linus 马尔科夫类真是一个极其抽象的类。平常写的各种类都是比较具象。头一次见到给一个分布写类的。
 class MarkovChain:
     def __init__(
         self,
@@ -117,6 +119,7 @@ class MarkovChain:
         #linus self.starting_dist和self.dist两个变量是不是有点重复？
         self.starting_dist = self.dist
 
+    #linus 这种写法就是我目前无法驾驭的
     def get_states(self):
         return list(self.states)
 
@@ -132,6 +135,7 @@ class MarkovChain:
     def get_current_dist(self):
         return self.dist
 
+    #linus 
     def update_dist(self):
         """
         Performs one step of the markov chain
