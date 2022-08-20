@@ -8,7 +8,7 @@ sys.path.append("../common/")
 ### THIS IS A WORKAROUND FOR NOW
 ### IT REQUIRES RUNNING MANIM FROM INSIDE DIRECTORY VIDEO-DEV
 # linus 这一行代码注释掉也不影响。如果在上一级目录执行，就需要这个sys.path
-sys.path.insert(1, "common/")
+# sys.path.insert(1, "common/")
 
 from manim import *
 from manim.mobject.geometry.tips import ArrowTriangleFilledTip
