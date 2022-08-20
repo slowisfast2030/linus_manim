@@ -6,7 +6,7 @@ from manim.mobject.geometry.tips import ArrowTriangleFilledTip
 from reducible_colors import *
 from functions import *
 
-from typing import Hashable, Iterable
+from typing import Hashable
 
 import numpy as np
 import itertools as it
