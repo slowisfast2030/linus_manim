@@ -214,9 +214,11 @@ class CustomLabel(Text):
         print(test_class_with_ini.child_attribute)
         print(test_class_with_ini.father_attribute)
         """
-        #linus 一般而言，子类的属性会比父类多一些
-        #linus super().__init__()会很方便在父类属性基础上新增属性
+        #linus 如果抽象得看，类只是拥有类内的函数的使用权。
+        #linus 一旦发生继承，子类就会拥有父类函数的使用权。
         super().__init__(label, font=font, weight=weight)
+        #linus 发生了继承，那么子类就有了父类函数的使用权。scale()是父类函数。
+        #linus 调用父类函数是为了修改某一属性。
         self.scale(scale)
 
 
