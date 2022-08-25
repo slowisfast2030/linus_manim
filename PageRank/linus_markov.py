@@ -124,7 +124,8 @@ class MarkovChain:
         self.transition_matrix = transition_matrix
 
 # 这个类很是典型。
-# 以前总是好奇，为何
+# 以前总是好奇，继承的一个类该怎么显示呢？
+# 原来通过继承方式，紧紧改变一些类的属性。
 class CustomLabel(Text):
     def __init__(self, label, font="SF Mono", scale=1, weight=BOLD):
         #linus 如果没有下面这一行，子类会覆盖父类的__init__函数
@@ -171,9 +172,25 @@ class CustomLabel(Text):
         """
         #linus 如果抽象得看，类只是拥有类内的函数的使用权。
         #linus 一旦发生继承，子类就会拥有父类函数的使用权。
+
+        # 这里可以深度思考一下：如果继承后不执行父类的__init__()函数会带来哪些问题？
+        # 一个类里会有属性和方法。很多方法都会操作属性。如果执行子类的__init__()函数，
+        # 父类的__init__()函数就会被覆盖，那么父类的很多属性就会丢失。
+        # 此时，如果子类去调用父类的一些方法，就可能会出现一些bug，显示子类没有对应的属性。
+        # 所以，如果是继承的话，在子类的__init__()方法里，除了定义子类新的属性或者改写父类的一些属性外，一定要执行super().__init__()函数。
+        '''
+        个人感觉super().__init__(label, font=font, weight=weight)也可以这样写：
+        super().__init__()
+        self.font = font
+        self.weight = weight
+        '''
+        # 在子类里，建议先执行父类的初始化函数，然后再定义子类的一些新属性，或者覆盖父类的一些属性。
         super().__init__(label, font=font, weight=weight)
         #linus 发生了继承，那么子类就有了父类函数的使用权。scale()是父类函数。
         #linus 调用父类函数是为了修改某一属性。
+        # 下面这一行就很哲学了。通过一个函数改变类的一个属性。
+        # self.scale = scale
+        # 当然，上面只是简单的说明其效果。
         self.scale(scale)
 
 
