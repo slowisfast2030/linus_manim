@@ -123,7 +123,8 @@ class MarkovChain:
     def set_transition_matrix(self, transition_matrix):
         self.transition_matrix = transition_matrix
 
-
+# 这个类很是典型。
+# 以前总是好奇，为何
 class CustomLabel(Text):
     def __init__(self, label, font="SF Mono", scale=1, weight=BOLD):
         #linus 如果没有下面这一行，子类会覆盖父类的__init__函数
