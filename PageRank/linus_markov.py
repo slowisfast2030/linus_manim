@@ -227,6 +227,7 @@ class MarkovChainGraph(Graph):
         self,
         # 类型注释只是一种提示，并非强制的。python解释器不会去校验value的类型是否真的是type
         markov_chain: MarkovChain,
+
         vertex_config={
             "stroke_color": REDUCIBLE_PURPLE,
             "stroke_width": 3,
@@ -236,9 +237,11 @@ class MarkovChainGraph(Graph):
         # 参数类型是dict，默认值是None
         curved_edge_config: dict = None,
         straight_edge_config: dict = None,
+
         enable_curved_double_arrows=True,
         labels=True,
         state_color_map=None,
+
         #linus 以前学习的参数都是固定参数，这一次是可变参数。确实挺耳目一新的。
         # def add(*numbers):
         #     total = 0
@@ -268,6 +271,7 @@ class MarkovChainGraph(Graph):
         self.markov_chain = markov_chain
         #linus 弯曲的双向箭头
         self.enable_curved_double_arrows = enable_curved_double_arrows
+        
         #linus 曲边
         self.default_curved_edge_config = {
             "color": REDUCIBLE_VIOLET,
@@ -280,11 +284,15 @@ class MarkovChainGraph(Graph):
             "max_tip_length_to_length_ratio": 0.06,
             "stroke_width": 3,
         }
+        # 这里很奇怪：default_curved_edge_config和default_straight_edge_config都是类的属性。
+        # 我们对于类的属性，一般是通过初始化函数的参数进行赋值。
+        # 这里却直接在初始化函数里写死了！！！
+
         self.state_color_map = state_color_map
 
         if labels:
             labels = {
-                k: CustomLabel(str(k), scale=0.6) for k in markov_chain.get_states()
+                k: CustomLabel(str(k), scale=10) for k in markov_chain.get_states()
             }
         
         if self.state_color_map:
