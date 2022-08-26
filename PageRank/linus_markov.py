@@ -289,19 +289,22 @@ class MarkovChainGraph(Graph):
         # 这里却直接在初始化函数里写死了！！！
 
         self.state_color_map = state_color_map
-
+        
         if labels:
             labels = {
                 k: CustomLabel(str(k), scale=10) for k in markov_chain.get_states()
             }
         
+        # 这里是给每一个节点设置颜色的
         if self.state_color_map:
             new_vertex_config = {}
             for state in markov_chain.get_states():
+                print('{}:{}'.format('state', state))
                 new_vertex_config[state] = vertex_config.copy()
                 new_vertex_config[state]["stroke_color"] = self.state_color_map[state]
                 new_vertex_config[state]["fill_color"] = self.state_color_map[state]
 
+            # vertex_config是一个嵌套字典
             vertex_config = new_vertex_config
 
         self.labels = {}
