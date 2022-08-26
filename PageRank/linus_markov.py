@@ -317,15 +317,17 @@ class MarkovChainGraph(Graph):
             **kwargs,
         )
 
+        # 父类
         self._graph = self._graph.to_directed()
+        # 父类
         self.remove_edges(*self.edges)
-
+        # 子类
         self.add_markov_chain_edges(
             *markov_chain.get_edges(),
             straight_edge_config=straight_edge_config,
             curved_edge_config=curved_edge_config,
         )
-
+        # 父类
         self.clear_updaters()
         # this updater makes sure the edges remain connected
         # even when states move around
@@ -342,10 +344,12 @@ class MarkovChainGraph(Graph):
                 arrow_start = u_c + unit_vec * u_radius
                 arrow_end = v_c - unit_vec * v_radius
                 edge.put_start_and_end_on(arrow_start, arrow_end)
-
+        # 父类
         self.add_updater(update_edges)
+        # 这是什么写法？
         update_edges(self)
 
+    # 下面是子类自定义的3个函数
     def add_edge_buff(
         self,
         edge: tuple[Hashable, Hashable],
