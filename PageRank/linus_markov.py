@@ -576,6 +576,7 @@ class MarkovChainSimulator:
             self.user_to_state[user_id] = self.update_state(user_id)
         # 更新一次马尔科夫状态的分布
         self.markov_chain.update_dist()
+        # 记录每一次的状态分布
         self.distribution_sequence.append(self.markov_chain.get_current_dist())
 
     def update_state(self, user_id: int):
@@ -584,6 +585,7 @@ class MarkovChainSimulator:
         new_state = np.random.choice(
             self.markov_chain.get_states(), p=transition_matrix[current_state]
         )
+        # 这里需不要把old_state - 1?
         self.state_counts[new_state] += 1
         return new_state
 
@@ -600,8 +602,11 @@ class MarkovChainSimulator:
         return dist
 
     def get_instant_transition_animations(self):
+        # 存储了num个节点的动作
         transition_animations = []
+        # 每个节点更新一次状态
         self.transition()
+        # 节点的状态变了，对应的，节点的位置也会变化
         for user_id, user in enumerate(self.users):
             new_location = self.get_user_location(user_id)
             transition_animations.append(user.animate.move_to(new_location))
