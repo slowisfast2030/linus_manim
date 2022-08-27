@@ -516,6 +516,7 @@ class MarkovChainSimulator:
         self.markov_chain = markov_chain
         self.markov_chain_g = markov_chain_g
         self.num_users = num_users
+        # 这个属性是用来干什么的？
         self.state_counts = {i: 0 for i in markov_chain.get_states()}
         self.user_radius = user_radius
         self.distribution_sequence = []
