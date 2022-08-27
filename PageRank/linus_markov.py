@@ -571,6 +571,7 @@ class MarkovChainSimulator:
         return self.users
 
     def transition(self):
+        # 
         for user_id in self.user_to_state:
             self.user_to_state[user_id] = self.update_state(user_id)
         self.markov_chain.update_dist()
