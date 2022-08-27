@@ -292,7 +292,7 @@ class MarkovChainGraph(Graph):
         
         if labels:
             labels = {
-                k: CustomLabel(str(k), scale=10) for k in markov_chain.get_states()
+                k: CustomLabel(str(k), scale=0.1) for k in markov_chain.get_states()
             }
         
         # 这里是给每一个节点设置颜色的
