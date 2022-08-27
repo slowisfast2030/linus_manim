@@ -517,11 +517,19 @@ class MarkovChainSimulator:
         self.markov_chain_g = markov_chain_g
         self.num_users = num_users
         # 这个属性是用来干什么的？
+        # 后面会初始化num个节点，每个节点会是马尔科夫状态中的一个。
+        # 这个属性就是用来计数每个状态的节点个数。
         self.state_counts = {i: 0 for i in markov_chain.get_states()}
         self.user_radius = user_radius
         self.distribution_sequence = []
         self.init_users()
 
+    '''
+    numpy.random.choice(a, size=None, replace=True, p=None)
+    从a(只要是ndarray都可以，但必须是一维的)中随机抽取数字，并组成指定大小(size)的数组
+    replace:True表示可以取相同数字，False表示不可以取相同数字
+    数组p：与数组a相对应，表示取数组a中每个元素的概率，默认为选取每个元素的概率相同。
+    '''
     def init_users(self):
         self.user_to_state = {
             i: np.random.choice(
@@ -548,10 +556,13 @@ class MarkovChainSimulator:
         self.distribution_sequence.append(self.markov_chain.get_current_dist())
 
     def get_user_location(self, user: int):
+        # 获取节点的马尔科夫状态
         user_state = self.user_to_state[user]
+        # 马尔科夫某个状态的中心位置
         user_location = self.markov_chain_g.vertices[user_state].get_center()
+        # 通过泊松分布产生节点的随机位置
         distributed_point = self.poisson_distribution(user_location)
-
+        # 节点的位置
         user_location = [distributed_point[0], distributed_point[1], 0.0]
 
         return user_location
