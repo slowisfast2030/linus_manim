@@ -295,14 +295,14 @@ class MarkovChainGraph(Graph):
         
         if labels:
             labels = {
-                k: CustomLabel(str(k), scale=1.3) for k in markov_chain.get_states()
+                k: CustomLabel(str(k), scale=1.5) for k in markov_chain.get_states()
             }
         
         # 这里是给每一个节点设置颜色的
         if self.state_color_map:
             new_vertex_config = {}
             for state in markov_chain.get_states():
-                print('{}:{}'.format('state', state))
+                #print('{}:{}'.format('state', state))
                 new_vertex_config[state] = vertex_config.copy()
                 new_vertex_config[state]["stroke_color"] = self.state_color_map[state]
                 new_vertex_config[state]["fill_color"] = self.state_color_map[state]
@@ -434,7 +434,7 @@ class MarkovChainGraph(Graph):
         else:
             straight_edge_config = self.default_straight_edge_config.copy()
 
-        print(straight_edge_config)
+        #print(straight_edge_config)
 
         edge_vertices = set(it.chain(*edges))
         new_vertices = [v for v in edge_vertices if v not in self.vertices]
@@ -462,7 +462,7 @@ class MarkovChainGraph(Graph):
 
         return self.get_group_class()(*added_mobjects)
 
-    def get_transition_labels(self, scale=0.3, round_val=True):
+    def get_transition_labels(self, scale=.3, round_val=True):
         """
         This function returns a VGroup with the probability that each
         each state has to transition to another state, based on the
@@ -488,7 +488,7 @@ class MarkovChainGraph(Graph):
 
                     label = (
                         Text(str(matrix_prob), font=REDUCIBLE_MONO)
-                        .set_stroke(RED, width=8, background=True, opacity=0.8)
+                        .set_stroke(GREEN, width=8, background=True, opacity=0.8)
                         .scale(scale*1)
                         .move_to(self.edges[edge_tuple].point_from_proportion(0.2))
                     )
