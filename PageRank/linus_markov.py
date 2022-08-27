@@ -571,9 +571,10 @@ class MarkovChainSimulator:
         return self.users
 
     def transition(self):
-        # 
+        # 为每个节点更新一次状态
         for user_id in self.user_to_state:
             self.user_to_state[user_id] = self.update_state(user_id)
+        # 更新一次马尔科夫状态的分布
         self.markov_chain.update_dist()
         self.distribution_sequence.append(self.markov_chain.get_current_dist())
 
