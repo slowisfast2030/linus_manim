@@ -7,3 +7,7 @@
 
 路径疑问：
 example_scenes和manim文件夹是同级目录，那么example_scenes下的文件为何可以直接引用manim文件夹里的变量呢？
+
+
+/opt/anaconda3/envs/manim/lib/python3.9/site-packages/manim/animation/animation.py
+193:print("linus starting animation")
