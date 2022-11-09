@@ -17,7 +17,10 @@ class ToyExample(Scene):
 # python -m manim -qm -p preliminary.py ToyExample
 # 注意：python -m module等价于 python some_path/module.py 
 # 那么-qm -p preliminary.py ToyExample其实就全是module.py的参数
-# 可以猜测，
+# 可以猜测
+# 1.module.py这个脚本会利用-qm -p参数初始化config字典
+# 2.module.py这个脚本内部会对preliminary.py脚本中的ToyExample类进行实例化，并调用render方法
+
 with tempconfig({"quality": "medium_quality", "preview": True}):
     scene = ToyExample()
     scene.render()
