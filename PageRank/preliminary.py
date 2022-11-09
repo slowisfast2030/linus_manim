@@ -15,6 +15,8 @@ class ToyExample(Scene):
 
 # linus下面的代码等价于
 # python -m manim -qm -p preliminary.py ToyExample
+# 注意：python -m module等价于 python some_path/module.py 
+# 那么-qm -p preliminary.py ToyExample其实就全是module.py的参数
 with tempconfig({"quality": "medium_quality", "preview": True}):
     scene = ToyExample()
     scene.render()
